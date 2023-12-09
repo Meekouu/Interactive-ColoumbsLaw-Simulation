@@ -12,7 +12,6 @@ from PyPhysics import *
 def projectile_motion_window(initial_velocity=50):
     global win, projectile_group, u
 
-    # Set up the window
     info = pygame.display.Info()
 
     win = pygame.display.set_mode(SCREEN)
@@ -21,7 +20,6 @@ def projectile_motion_window(initial_velocity=50):
     clock = pygame.time.Clock()
     FPS = 60
 
-    # Dark Mode theme
     BLACK = (0, 0, 0)
     WHITE = (255, 255, 255)
     RED = (255, 87, 34)
@@ -36,7 +34,7 @@ def projectile_motion_window(initial_velocity=50):
 
     font = pygame.font.SysFont('verdana', 12)
 
-    origin = (20, 400)  # Adjusted floor level
+    origin = (20, 400)
 
     u = initial_velocity
     g = 9.8
@@ -117,8 +115,8 @@ def projectile_motion_window(initial_velocity=50):
                     currentp = None
 
                 if event.key == pygame.K_BACKSPACE:
-                    running = False  # Break out of the loop without quitting Pygame
-                    pygame.quit()  # Properly quit Pygame
+                    running = False
+                    pygame.quit()
                     return
 
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -164,7 +162,7 @@ def projectile_motion_window(initial_velocity=50):
             timetext = font.render(f"Time : {currentp.timeOfFlight()}s", True, WHITE)
             rangetext = font.render(f"Range : {currentp.getRange()}m", True, WHITE)
             heighttext = font.render(f"Max Height : {currentp.getMaxHeight()}m", True, WHITE)
-            gravitytext = font.render(f"Gravity : 9.8 m/s^2", True, WHITE)
+            gravitytext = font.render(f"Gravity : -9.8 m/s^2", True, WHITE)
 
 
             win.blit(veltext, (WIDTH - 150, 380))
@@ -182,12 +180,9 @@ def projectile_motion_window(initial_velocity=50):
 
 
 def start_simulation():
-    # Initialize Pygame before calling projectile_motion_window
     pygame.init()
-    # Get the initial velocity from the entry widget
     initial_velocity = float(velocity_entry.get())
     projectile_motion_window(initial_velocity)
-    # Properly quit Pygame after the simulation
     pygame.quit()
 
 
@@ -204,7 +199,6 @@ def center_window(window):
     window.geometry(f"400x200+{x}+{y}")
 
 
-# Start simulation window using Tkinter
 def center_window(window):
     window.update_idletasks()
     width = window.winfo_width()
@@ -214,19 +208,16 @@ def center_window(window):
     window.geometry(f"400x200+{x}+{y}")
 
 
-# Start simulation window using Tkinter
-# Start Tkinter window
 root = tk.Tk()
 root.title("PyProjectile-Motion-Simulation")
 
 title_label = tk.Label(root, text="PyProjectile-Motion-Simulation", font=("Helvetica", 16))
 title_label.pack(pady=20)
 
-# Entry widget for velocity
 velocity_label = tk.Label(root, text="Initial Velocity:")
 velocity_label.pack()
 velocity_entry = tk.Entry(root)
-velocity_entry.insert(0, "50")  # Default initial velocity
+velocity_entry.insert(0, "50")
 velocity_entry.pack()
 
 start_button = tk.Button(root, text="Start Simulation", command=start_simulation)
