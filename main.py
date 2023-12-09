@@ -162,7 +162,7 @@ def projectile_motion_window(initial_velocity=50):
             timetext = font.render(f"Time : {currentp.timeOfFlight()}s", True, WHITE)
             rangetext = font.render(f"Range : {currentp.getRange()}m", True, WHITE)
             heighttext = font.render(f"Max Height : {currentp.getMaxHeight()}m", True, WHITE)
-            gravitytext = font.render(f"Gravity : -9.8 m/s^2", True, WHITE)
+            gravitytext = font.render(f"Gravity : 9.8 m/s^2", True, WHITE)
 
 
             win.blit(veltext, (WIDTH - 150, 380))
